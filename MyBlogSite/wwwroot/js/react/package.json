@@ -1,0 +1,28 @@
+{
+  "name": "myblog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hanna Song",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "js-cookie": "^2.2.0",
+    "js-cookies": "^1.0.4",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^3.1.0"
+  },
+  "dependencies": {
+    "draft-js": "^0.10.5",
+    "react-draft-wysiwyg": "^1.12.13"
+  }
+}

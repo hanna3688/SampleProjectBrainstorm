@@ -1,0 +1,109 @@
+﻿body {
+    height: 100%;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+input,
+select {
+    max-width: 400px;
+}
+
+#mydiv {
+    position: absolute;
+    z-index: 9;
+    text-align: center;
+
+}
+
+
+#mydivheader {
+    padding: 7px;
+    cursor: move;
+    z-index: 10;
+    background-color: #2196F3;
+    color: #fff;
+    height: 33px;
+}
+
+#color-btn {
+    font-size: 12px;
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    color:white;
+    padding-top: 2px;
+    padding-left: 3px;
+}
+
+#color-dropdown {
+    float: left;
+    height: 20px;
+}
+
+#color-dropdown:hover {
+    cursor: pointer;
+}
+
+#mytext {
+    border: none;
+}
+
+textarea {
+    width: 300px;
+    height: 230px;
+    padding:0;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}
+
+.list-group.panel > .list-group-item {
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px
+}
+
+.list-group-submenu {
+    margin-left: 20px;
+}
