@@ -29,6 +29,7 @@ namespace MyBlogSite.Controllers
             _jwtAuthentication = jwtAuthentication ?? throw new ArgumentNullException(nameof(jwtAuthentication));
 
         }
+        
         public IActionResult Index(int? id=null)
         {
             ViewBag.BoardId = id;
@@ -135,6 +136,38 @@ namespace MyBlogSite.Controllers
             {
                 return Json(new { Success = false });
             }
+        }
+        [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> DeleteBoard(int id)
+        {
+            try
+            {
+                BrainstormBoard existingBoard = _context.BrainstormBoards.Find(id);
+                if( existingBoard == null)
+                {
+                    return Json(new { Success = false });
+                }
+
+                //Delete sticky notes for the board
+                var notes = _context.StickyNotes.Where(x => x.BoardId == id);
+                foreach (StickyNote note in notes)
+                {
+                    _context.StickyNotes.Remove(note);
+                }
+                //await _context.SaveChangesAsync();
+                _context.SaveChanges();
+
+                //Delete the board
+                _context.BrainstormBoards.Remove(existingBoard);
+                _context.SaveChanges();
+
+            }
+            catch
+            {
+                return Json(new { Success = false });
+            }
+            return Json(new { Success = true });
         }
 
         [HttpPost]

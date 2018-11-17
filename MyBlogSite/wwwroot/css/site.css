@@ -1,6 +1,6 @@
 ﻿body {
     height: 100%;
-    padding-top: 50px;
+    padding-top: 7vh;
     padding-bottom: 20px;
 }
 
@@ -45,7 +45,6 @@ select {
     position: absolute;
     z-index: 9;
     text-align: center;
-
 }
 
 
@@ -66,7 +65,7 @@ select {
     cursor: pointer;
     overflow: hidden;
     outline: none;
-    color:white;
+    color: white;
     padding-top: 2px;
     padding-left: 3px;
 }
@@ -76,9 +75,9 @@ select {
     height: 20px;
 }
 
-#color-dropdown:hover {
-    cursor: pointer;
-}
+    #color-dropdown:hover {
+        cursor: pointer;
+    }
 
 #mytext {
     border: none;
@@ -87,17 +86,18 @@ select {
 textarea {
     width: 300px;
     height: 230px;
-    padding:0;
+    padding: 0;
 }
 
 .dropdown-submenu {
     position: relative;
 }
-.dropdown-submenu .dropdown-menu {
-    top: 0;
-    left: 100%;
-    margin-top: -1px;
-}
+
+    .dropdown-submenu .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -1px;
+    }
 
 .list-group.panel > .list-group-item {
     border-bottom-right-radius: 4px;
@@ -106,4 +106,56 @@ textarea {
 
 .list-group-submenu {
     margin-left: 20px;
+}
+
+.ui.inverted.segment {
+    border-radius: 0;
+}
+
+#leftStickyButton {
+    left: 2vh !important;
+    top: 25vh !important;
+    position: fixed;
+}
+#stickySaveButton {
+    left: 2vh !important;
+    top: 18.5vh !important;
+    position: fixed;
+}
+
+.ui.primary.basic.button:hover {
+    background-color: #237BEF !important;
+    color: white !important;
+    width: 180px !important;
+}
+.ui.primary.basic.button:hover span.text::after {
+    content:' Add Sticky Note';
+}
+
+.ui.green.basic.button:hover {
+    background-color: #21BA45 !important;
+    color: white !important;
+    width: 180px !important;
+}
+
+.ui.green.basic.button:hover span.text::after {
+    content: ' Save this board';
+}
+
+#dropdown-item {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}
+
+.ui.menu .ui.dropdown .menu > .item:hover {
+    color: rgba(0, 0, 0, 0.95) !important;
+}
+
+.ui.link.menu .item:hover,
+.ui.menu .dropdown.item:hover,
+.ui.menu .link.item:hover,
+.ui.menu a.item:hover {
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.03);
+    color: rgba(0, 0, 0, 0.95);
 }

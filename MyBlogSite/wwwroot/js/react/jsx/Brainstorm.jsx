@@ -2,6 +2,8 @@
 import ReactDOM from 'react-dom';
 import StickyNote from './StickyNote.jsx';
 import Cookies from 'js-cookie';
+import DownloadLink from "react-download-link";
+import { Banner } from './Banner/Banner.jsx';
 
 export class BrainstormBoard extends React.Component {
     constructor(props) {
@@ -21,11 +23,28 @@ export class BrainstormBoard extends React.Component {
             zIndex: 10,
             //value: RichTextEditor.createEmptyValue(),
             writings: null,
-            sampleBoard: {}
+            sampleBoard: {},
+            title: "",
+            position: { top: 51, left: 161 }
         }
     }
 
     componentDidMount() {
+        $('#save')
+            .popup({
+                popup: $('.custom.popup'),
+                on: 'click',
+                position: 'bottom left'
+            })
+            ;
+        $('#save2')
+            .popup({
+                popup: $('.custom.popup'),
+                on: 'click',
+                position: 'bottom left'
+            })
+            ;
+        $('.ui.sticky').sticky();
         var cookies = Cookies.get('myblogAuthToken');
         var self = this;
         const root = document.getElementById("root");
@@ -59,7 +78,8 @@ export class BrainstormBoard extends React.Component {
                     this.setState({
                         boardId: res.board.id,
                         notes: notes,
-                        nextIndex: index
+                        nextIndex: index,
+                        title: res.board.title
                     });
                 }
             }.bind(this),
@@ -70,15 +90,17 @@ export class BrainstormBoard extends React.Component {
 
     }
 
-    addNewNote() {
+    addNewNote(e) {
         var notes = this.state.notes;
         const index = this.state.nextIndex;
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        console.log(scrollTop);
         //notes[index] = <StickyNote key={index} index={index} deleteNote={this.removeNote} />
         notes[index] = {
             id: "",
             content: "",
             color: "blue",
-            positions: { top: 51, left: 161 }
+            positions: { top: scrollTop + 51, left: 161 }
         };
         this.setState({
             notes: notes,
@@ -113,11 +135,14 @@ export class BrainstormBoard extends React.Component {
             zIndex: i + 1
         })
     }
-    onChange(value) {
+    onChange(e) {
+        //this.setState({
+        //    value: value,
+        //    writings: value.toString('html')
+        //});
         this.setState({
-            value: value,
-            writings: value.toString('html')
-        });
+            title: e.target.value
+        })
 
     }
     saveBoard() {
@@ -137,11 +162,11 @@ export class BrainstormBoard extends React.Component {
 
         });
         var cookies = Cookies.get('myblogAuthToken');
-        
+
         if (this.state.boardId == "") {
             //CreateBoard
             var data = {
-                title: "Sample",
+                title: this.state.title == "" ? "No Title" : this.state.title,
                 stickyNotes: stickynotes
             };
 
@@ -167,7 +192,7 @@ export class BrainstormBoard extends React.Component {
             //UpdateBoard
             var data = {
                 id: this.state.boardId,
-                title: "Sample",
+                title: this.state.title == "" ? "No Title" : this.state.title,
                 stickyNotes: stickynotes
             };
             $.ajax({
@@ -190,6 +215,7 @@ export class BrainstormBoard extends React.Component {
         }
 
         //console.log(this.state.notes);
+        window.location = "/Brainstorm/BoardsTable";
     }
     render() {
         const notes = this.state.notes;
@@ -200,26 +226,52 @@ export class BrainstormBoard extends React.Component {
                 zIndex={this.state.zIndex} noteDetails={this.state.notes[key]} handleChange={this.handleNoteChange} />
         );
         return (
-            <div className="container">
-                <div className="dropdown">
-                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a className="dropdown-item" href="#">Action</a>
-                        <a className="dropdown-item" href="#">Another action</a>
-                        <a className="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </div>
-                {allNotes}
-                
-                {/*<RichTextEditor
+            <React.Fragment>
+                <Banner currentPage="Brainstorm" />
+                <h2>
+                    {this.state.title ? this.state.title : "Brainstorm"}
+                </h2>
+                <p>Use this area to brainstorm your ideas. You can add stickynotes to note down your ideas and move them around.
+                 </p>
+                <div className="container">
+                    {allNotes}
+
+                    {/*<RichTextEditor
                     value={this.state.value}
                     onChange={this.onChange}
                 />*/}
-                {/*<EditorConvertToHTML />*/}
-
-                <button style={{ float: "right" }} className="btn btn-outline-success" type="button" onClick={this.saveBoard}>Save this Board</button>
-                <button style={{ float: "right", marginRight:"10px" }} className="btn btn-outline-primary" type="button" onClick={this.addNewNote}><i className="glyphicon glyphicon-plus" /> Add StickyNote</button><div id="log">
+                    {/*<EditorConvertToHTML />*/}
+                    <div className="ui fixed sticky" id="leftStickyButton" >
+                        <button
+                            className="ui circular icon large primary basic button testing"
+                            type="button" onClick={this.addNewNote}
+                        >
+                            <i className="plus icon"></i>
+                            <span className="text"></span>
+                        </button>
+                    </div>
+                    <div className="ui fixed sticky" id="stickySaveButton">
+                        <button
+                            className="ui circular icon large green basic button testing"
+                            id="save2" type="button">
+                            <i className="save outline icon"></i>
+                            <span className="text"></span>
+                        </button>
+                    </div>
+                    <div id="log">
+                    </div>
+                    <div className="ui custom popup transition hidden" data-variation="basic">
+                        <h5>Please enter a Title for this board</h5>
+                        <div className="ui input">
+                            <input type="text" placeholder="Title" style={{ width: "30vw", marginBottom: "1.5vh" }}
+                                onChange={this.onChange} value={this.state.title}
+                            />
+                        </div>
+                        <button className="btn btn-outline-success" style={{ width: "10vw", float: "right" }}
+                            type="button" onClick={this.saveBoard}>Save</button>
+                    </div>
                 </div>
-            </div>
+            </React.Fragment>
         )
     }
 }

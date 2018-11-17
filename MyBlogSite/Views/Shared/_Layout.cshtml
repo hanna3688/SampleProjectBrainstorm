@@ -7,14 +7,18 @@
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link href="~/css/semantic.css" rel="stylesheet" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link href="~/css/notifications.css" rel="stylesheet" />
         <link href="~/css/react-draft-wysiwyg.css" rel="stylesheet" />
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        
+        <link href="~/css/semantic.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 
@@ -23,6 +27,7 @@
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/jquery/dist/jquery-ui.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/semantic.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
 
@@ -30,33 +35,51 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">My Blog</a>
+    @*<nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">My Blog</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a asp-area="" asp-controller="Brainstorm" asp-action="Index">Brainstorm</a></li>
+                        <li><a asp-area="" asp-controller="Brainstorm" asp-action="BoardsTable">Brainstorm Boards</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav" style="float:right">
+                        <li><a asp-area="" asp-controller="Home" asp-action="About">LOGIN</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Brainstorm" asp-action="Index">Brainstorm</a></li>
-                    <li><a asp-area="" asp-controller="Brainstorm" asp-action="BoardsTable">Brainstorm Boards</a></li>
-                </ul>
-                <ul class="nav navbar-nav" style="float:right">
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">LOGIN</a></li>
-                </ul>
+        </nav>*@
+    @*<div class="ui inverted segment" style="position:absolute;top:0;width:100%">
+        <div class="ui inverted menu">
+            <a class="item" href="/Home">
+                <i class="home icon"></i>Home
+            </a>
+            <a class="item" href="/Brainstorm/Index">
+                Brainstorm
+            </a>
+            <a class="item" href="/Brainstorm/BoardsTable">
+                Brainstorm Board
+            </a>
+            <div class="right menu">
+                <a class="ui item">
+                    Logout
+                </a>
             </div>
         </div>
-    </nav>
+    </div>*@
+    
     <div class="container body-content">
         @RenderBody()
     </div>
-
 
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
@@ -73,7 +96,7 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-
     @RenderSection("Scripts", required: false)
 </body>
+
 </html>

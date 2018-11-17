@@ -804,9 +804,10 @@
   right: 0;
 }
 .rdw-editor-main {
-  height: 200px;
-  overflow: auto;
-  box-sizing: border-box;
+    height: 300px;
+    overflow: auto;
+    box-sizing: border-box;
+    border: 1px solid #D7D8D8;
 }
 .rdw-editor-toolbar {
   padding: 6px 5px 0;

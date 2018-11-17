@@ -19,6 +19,31 @@ namespace MyBlogSite.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("MyBlogSite.Models.BlogEntry", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AuthorId");
+
+                    b.Property<string>("Content");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<bool>("IsShared");
+
+                    b.Property<string>("Title");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("BlogEntries");
+                });
+
             modelBuilder.Entity("MyBlogSite.Models.BrainstormBoard", b =>
                 {
                     b.Property<int>("Id")
@@ -107,6 +132,34 @@ namespace MyBlogSite.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("MyBlogSite.Models.UserCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ParentId");
+
+                    b.Property<string>("Title");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserCategories");
+                });
+
+            modelBuilder.Entity("MyBlogSite.Models.BlogEntry", b =>
+                {
+                    b.HasOne("MyBlogSite.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("MyBlogSite.Models.BrainstormBoard", b =>
                 {
                     b.HasOne("MyBlogSite.Models.User", "User")
@@ -127,6 +180,17 @@ namespace MyBlogSite.Migrations
                         .WithMany("Users")
                         .HasForeignKey("LoginId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("MyBlogSite.Models.UserCategory", b =>
+                {
+                    b.HasOne("MyBlogSite.Models.UserCategory", "Parent")
+                        .WithMany()
+                        .HasForeignKey("ParentId");
+
+                    b.HasOne("MyBlogSite.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

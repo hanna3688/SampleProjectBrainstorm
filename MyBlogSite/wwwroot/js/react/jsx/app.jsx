@@ -2,6 +2,7 @@
 import Cookies from 'js-cookie';
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState } from 'draft-js';
+import { Banner } from './Banner/Banner.jsx';
 
 export class App extends React.Component {
     constructor(props) {
@@ -33,7 +34,7 @@ export class App extends React.Component {
         $('#myModal').on('shown.bs.modal', function () {
             $(document).off('focusin.modal');
         });
-        
+
         console.log(Cookies.get('myblogAuthToken'));
         var cookies = Cookies.get('myblogAuthToken');
         var self = this;
@@ -130,53 +131,60 @@ export class App extends React.Component {
     render() {
         return (
             <div>
-                <h2 style={{ marginBottom: "10px" }}>
-                    {this.state.messageToDisplay}
-                </h2>
-                <h1 style={{ marginBottom: "10px" }}>Login</h1>
-                <form >
-                    <div className="form-group" style={{ paddingRight: "10px" }}>
-                        <label className="sr-only" htmlFor="exampleInputEmail3">Email address</label>
-                        <input type="email" className="form-control" id="exampleInputEmail3" name="username" placeholder="Email" onChange={this.handleLoginChange} />
+                <Banner currentPage="Login" />
+                <div className="ui two column very relaxed grid" style={{height:"90vh"}}>
+                    <div className="middle aligned column">
+                        <h2>{this.state.messageToDisplay}</h2>
+                        <h1 style={{ marginBottom: "10px" }}>Login</h1>
+                        <form className="ui form">
+                            <div className="field" style={{ paddingRight: "10px" }}>
+                                <label className="sr-only" htmlFor="exampleInputEmail3">Email address</label>
+                                <input type="email" className="form-control" id="exampleInputEmail3" name="username" placeholder="Email" onChange={this.handleLoginChange} />
+                            </div>
+                            <div className="field" style={{ paddingRight: "10px" }}>
+                                <label className="sr-only" htmlFor="exampleInputPassword3">Password</label>
+                                <input type="password" className="form-control" id="exampleInputPassword3" placeholder="Password" name="password" onChange={this.handleLoginChange} />
+                            </div>
+                            <div className="checkbox" style={{ paddingRight: "10px" }}>
+                                <label>
+                                    <input type="checkbox" /> Remember me
+                                </label>
+                            </div>
+                            <button style={{ marginRight: "10px" }} type="button" className="ui basic blue button" onClick={this.login}>Sign in</button>
+                            <button className="ui basic button" onClick={this.logout}>Log Out</button>
+                        </form>
                     </div>
-                    <div className="form-group" style={{ paddingRight: "10px" }}>
-                        <label className="sr-only" htmlFor="exampleInputPassword3">Password</label>
-                        <input type="password" className="form-control" id="exampleInputPassword3" placeholder="Password" name="password" onChange={this.handleLoginChange} />
+                    <div className="middle aligned column" style={{marginRight:"0"}}>
+                        <h1 style={{ marginBottom: "10px" }}>Sign Up</h1>
+                        <form className="ui form" style={{ marginRight: "0" }}>
+                            <div className="field">
+                                <label htmlFor="firstname">First Name</label>
+                                <input type="text" className="form-control" name="firstName" id="firstname" placeholder="First Name" onChange={this.handleChange} />
+                            </div>
+                            <div className="field">
+                                <label htmlFor="lastname">Last Name</label>
+                                <input type="text" className="form-control" name="lastName" id="lastname" placeholder="Last Name" onChange={this.handleChange} />
+                            </div>
+                            <div className="field">
+                                <label htmlFor="emailaddress">Email Address</label>
+                                <input type="email" className="form-control" name="emailAddress" id="emailaddress" placeholder="Email" onChange={this.handleChange} />
+                            </div>
+                            <div className="field">
+                                <label htmlFor="userpassword">Password</label>
+                                <input type="password" className="form-control" name="password" id="userpassword" placeholder="Password" onChange={this.handleChange} />
+                            </div>
+                            <div className="checkbox">
+                                <label>
+                                    <input type="checkbox" /> Check me out
+                                </label>
+                            </div>
+                            <button className="ui basic blue button" type="button" onClick={this.signup}>Submit</button>
+                        </form>
                     </div>
-                    <div className="checkbox" style={{ paddingRight: "10px" }}>
-                        <label>
-                            <input type="checkbox" /> Remember me
-    </label>
-                    </div>
-                    <button style={{ marginRight: "10px" }} type="button" className="btn btn-default" onClick={this.login}>Sign in</button>
-                    <button className="btn btn-default" onClick={this.logout}>Log Out</button>
-                </form>
-                <h1 style={{ marginBottom: "10px" }}>Sign Up</h1>
-                <form>
-                    <div className="form-group">
-                        <label htmlFor="firstname">First Name</label>
-                        <input type="text" className="form-control" name="firstName" id="firstname" placeholder="First Name" onChange={this.handleChange} />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="lastname">Last Name</label>
-                        <input type="text" className="form-control" name="lastName" id="lastname" placeholder="Last Name" onChange={this.handleChange} />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="emailaddress">Email Address</label>
-                        <input type="email" className="form-control" name="emailAddress" id="emailaddress" placeholder="Email" onChange={this.handleChange} />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="userpassword">Password</label>
-                        <input type="password" className="form-control" name="password" id="userpassword" placeholder="Password" onChange={this.handleChange} />
-                    </div>
-                    <div className="checkbox">
-                        <label>
-                            <input type="checkbox" /> Check me out
-    </label>
-                    </div>
-                    <button type="button" className="btn btn-default" onClick={this.signup}>Submit</button>
-                </form>
-                
+                </div>
+                <div className="ui vertical divider" style={{ zIndex: "-10" }}>
+                    Or
+                </div>
             </div>
 
         )

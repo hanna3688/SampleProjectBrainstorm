@@ -29,7 +29,6 @@ export class ManageBoard extends React.Component {
                     console.log("fail");
                 }
                 else {
-                    console.log(res.boards, "result");
                     self.setState({
                         boards: res.boards
                     });
@@ -53,7 +52,7 @@ export class ManageBoard extends React.Component {
         const boards = this.state.boards;
         const headings = Object.keys(boards);
         return (
-            <BoardTable headings={["id", "title","dateCreated"]}
+            <BoardTable headings={["title","dateCreated"]}
                 values={this.state.boards}
                 actions={{ "View": this.handleEdit, delete: this.handleDelete }} />
         )

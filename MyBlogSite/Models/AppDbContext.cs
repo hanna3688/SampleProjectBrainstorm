@@ -13,10 +13,11 @@ namespace MyBlogSite.Models
         { }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Login> Logins { get; set; }
-       
+        public DbSet<Login> Logins { get; set; }       
         public DbSet<BrainstormBoard> BrainstormBoards { get; set; }
         public DbSet<StickyNote> StickyNotes { get; set; }
+        public DbSet<BlogEntry> BlogEntries { get; set; }
+        public DbSet<UserCategory> UserCategories { get; set; }
         
     }
 }

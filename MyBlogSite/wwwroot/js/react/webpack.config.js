@@ -5,7 +5,11 @@ module.exports = {
         app: './app.js',
         brainstorm: './brainstorm.js',
         boardTable: './boardtable.js',
-        mindmap: './mindmap.js'
+        mindmap: './mindmap.js',
+        blogEntry: './blogEntry.js',
+        postBlog: './PostBlog.js',
+        manageBlogs: './ManageBlogs.js',
+        homePage: './Home.js'
     },
     output:
         {
