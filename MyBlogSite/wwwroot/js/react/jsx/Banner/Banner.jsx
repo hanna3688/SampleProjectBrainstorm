@@ -18,8 +18,8 @@ export class Banner extends React.Component {
     render() {
         return (
             <div className="" style={{ position: "absolute", top: "0", left: "0", width: "100%", border: "none", background: "transparent", boxShadow: "none" }}>
-                <div className="ui menu"
-                    style={{ padding: "10px", backgroundColor: "white" }}>
+                <div className="ui borderless menu"
+                    style={{ padding: "5px", backgroundColor: "white" }}>
                     <a className="item" href="/Home">
                         <i className="home icon"></i>Home
                     </a>

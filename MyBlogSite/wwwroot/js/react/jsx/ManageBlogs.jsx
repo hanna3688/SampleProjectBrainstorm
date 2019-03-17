@@ -84,43 +84,37 @@ export class ManageBlogs extends React.Component {
         const trValuesMap = blogs.map((x, index) => (
             <tr key={index}>
                 <td>{index + 1}</td>
-                <td>{x.title ? x.title : "No Title"}</td>
+                <td><a href={'/Blog/Index/?id=' + x.id}>{x.title ? x.title : "No Title"}</a></td>
                 <td>{x.dateCreated.split('T')[0]}</td>
-                <td>
-                    <button
-                        style={{ marginRight: "10px" }}
-                        className="btn btn-info"
-                        id={x.id}
-                        onClick={() => window.location.href = '/Blog/Index/?id=' + x.id}
-                    >View</button>
-                    <button
-                        style={{ marginRight: "10px" }}
-                        className="btn btn-warning"
-                        id={x.id}
-                        onClick={() => window.location.href = "/Blog/AddBlogEntry/?id=" + x.id}
-                    >Edit</button>
-                    <button className="btn btn-danger">Delete</button>
-                </td>
                 <td>
                     <div className="ui toggle checkbox" >
                         <input type="checkbox" name={x.id} defaultChecked={x.isShared} onChange={(e) => this.share(x.title,e)} />
                         <label></label>
                     </div>
                 </td>
+                <td>
+                    <button
+                        style={{ marginRight: "10px" }}
+                        className="btn btn-warning"
+                        id={x.id}
+                        onClick={() => window.location.href = "/Blog/AddBlogEntry/?id=" + x.id}
+                    ><i className="glyphicon glyphicon-edit" /></button>
+                    <button className="btn btn-danger"><i className="glyphicon glyphicon-trash" /></button>
+                </td>
             </tr>));
         return (
-            <React.Fragment>
+            <div className="container body-content">
                 <Banner currentPage="Blog" />
                 <h2>My Blogs</h2>
-                <button className="ui basic button" onClick={() => window.location.href = "/Blog/AddBlogEntry"}>Create New Blog</button>
+                <button className="ui basic button" onClick={() => window.location.href ="/Blog/AddBlogEntry"}>Create New Blog</button>
                 <table className="ui basic striped table">
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Title</th>
                             <th>Date Created</th>
-                            <th>Actions</th>
                             <th>Share</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -129,7 +123,7 @@ export class ManageBlogs extends React.Component {
                 </table>
                 <hr />
                 <NotificationContainer />
-            </React.Fragment>
+            </div>
         )
     }
 }

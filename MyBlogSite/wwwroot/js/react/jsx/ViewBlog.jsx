@@ -48,14 +48,14 @@ export class ViewBlog extends React.Component {
     render() {
         const content = this.state.testingContent;
         return (
-            <React.Fragment>
+            <div className="container body-content">
                 <Banner currentPage="Blog" />
                 <h2>{this.state.title} <i className="pencil alternate icon"></i></h2>
                 <div className="ui segment"
                     dangerouslySetInnerHTML={{ __html: content }}>
                 </div>
                 <hr />
-            </React.Fragment>
+            </div>
         )
     }
 }

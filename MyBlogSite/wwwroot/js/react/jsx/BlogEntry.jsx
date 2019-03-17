@@ -108,7 +108,7 @@ export class BlogEntry extends React.Component {
         const content = this.state.testingContent;
         
         return (
-            <React.Fragment>
+            <div className="container body-content">
                 <Banner currentPage="Blog" />
                 <h2>Blog Entry <i className="pencil alternate icon"></i></h2>
                 <p>
@@ -143,7 +143,7 @@ export class BlogEntry extends React.Component {
                         disabled
                         value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
                     />*/}
-            </React.Fragment>
+            </div>
         )
     }
 }

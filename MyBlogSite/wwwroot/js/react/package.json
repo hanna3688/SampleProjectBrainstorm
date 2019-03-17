@@ -26,6 +26,7 @@
     "draftjs-to-html": "^0.8.4",
     "react-download-link": "^2.2.0",
     "react-draft-wysiwyg": "^1.12.13",
-    "react-notifications": "^1.4.3"
+    "react-notifications": "^1.4.3",
+    "semantic-ui-react": "^0.84.0"
   }
 }

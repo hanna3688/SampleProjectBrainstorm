@@ -34,8 +34,6 @@ export class App extends React.Component {
         $('#myModal').on('shown.bs.modal', function () {
             $(document).off('focusin.modal');
         });
-
-        console.log(Cookies.get('myblogAuthToken'));
         var cookies = Cookies.get('myblogAuthToken');
         var self = this;
         $.ajax({
@@ -130,7 +128,7 @@ export class App extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="container body-content">
                 <Banner currentPage="Login" />
                 <div className="ui two column very relaxed grid" style={{height:"90vh"}}>
                     <div className="middle aligned column">
@@ -154,7 +152,7 @@ export class App extends React.Component {
                             <button className="ui basic button" onClick={this.logout}>Log Out</button>
                         </form>
                     </div>
-                    <div className="middle aligned column" style={{marginRight:"0"}}>
+                    <div className="middle aligned column" style={{ marginRight: "0", paddingLeft:"15%" }}>
                         <h1 style={{ marginBottom: "10px" }}>Sign Up</h1>
                         <form className="ui form" style={{ marginRight: "0" }}>
                             <div className="field">

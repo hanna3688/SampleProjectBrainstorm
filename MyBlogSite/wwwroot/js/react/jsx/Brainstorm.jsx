@@ -226,7 +226,7 @@ export class BrainstormBoard extends React.Component {
                 zIndex={this.state.zIndex} noteDetails={this.state.notes[key]} handleChange={this.handleNoteChange} />
         );
         return (
-            <React.Fragment>
+            <div className="container body-content">
                 <Banner currentPage="Brainstorm" />
                 <h2>
                     {this.state.title ? this.state.title : "Brainstorm"}
@@ -271,7 +271,7 @@ export class BrainstormBoard extends React.Component {
                             type="button" onClick={this.saveBoard}>Save</button>
                     </div>
                 </div>
-            </React.Fragment>
+            </div>
         )
     }
 }
